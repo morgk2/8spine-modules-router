@@ -1,0 +1,10 @@
+{
+  "name": "8spine-modules-router",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple Vercel router that redirects all traffic to https://8spine-modules.pages.dev",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}
