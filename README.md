@@ -1,11 +1,11 @@
 # 8spine-modules-router
 
-Simple Vercel router that redirects **all traffic** to `https://8spine-modules.pages.dev` (path-preserving, 308 Permanent).
+Simple Vercel router that **proxies** all traffic to `https://8spine-moduels.pages.dev` (path-preserving). The browser URL stays on the Vercel domain — no redirect.
 
 ## How it works
 
-- `vercel.json` → `redirects`: `/(.*)` → `https://8spine-modules.pages.dev/$1` (`permanent: true` = 308)
-- `public/index.html` → fallback `<meta refresh>` + `location.replace()` in case edge redirect is bypassed
+- `vercel.json` → `rewrites`: `/(.*)` → `https://8spine-moduels.pages.dev/$1` (server-side proxy, URL unchanged)
+- `public/index.html` → static page served at `/` (Vercel serves files before rewrites), containing a client-side redirect fallback
 
 ## Add custom routes later
 
@@ -13,9 +13,9 @@ Add entries **before** the catch-all in `vercel.json`:
 
 ```json
 {
-  "redirects": [
-    { "source": "/docs", "destination": "https://8spine-modules.pages.dev/docs", "permanent": false },
-    { "source": "/(.*)", "destination": "https://8spine-modules.pages.dev/$1", "permanent": true }
+  "rewrites": [
+    { "source": "/docs", "destination": "https://8spine-moduels.pages.dev/docs" },
+    { "source": "/(.*)", "destination": "https://8spine-moduels.pages.dev/$1" }
   ]
 }
 ```
@@ -30,6 +30,6 @@ Add entries **before** the catch-all in `vercel.json`:
 
 ```sh
 npx vercel dev
-# then: curl -I http://localhost:3000/some-path
-# expect: 308 Location: https://8spine-modules.pages.dev/some-path
+# then: curl -i http://localhost:3000/index.json
+# expect: 200 with the upstream JSON body (no Location header)
 ```
