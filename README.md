@@ -1,11 +1,11 @@
 # 8spine-modules-router
 
-Simple Vercel router that **proxies** all traffic to `https://8spine-moduels.pages.dev` (path-preserving). The browser URL stays on the Vercel domain — no redirect.
+Simple Vercel router that **proxies** all traffic to The Module Library at `https://8spine-modules.pages.dev` (path-preserving). The browser URL stays on the Vercel domain — no redirect.
 
 ## How it works
 
-- `vercel.json` → `rewrites`: `/(.*)` → `https://8spine-moduels.pages.dev/$1` (server-side proxy, URL unchanged)
-- `public/index.html` → static page served at `/` (Vercel serves files before rewrites), containing a client-side redirect fallback
+- `vercel.json` → `rewrites`: `/(.*)` → `https://8spine-modules.pages.dev/$1` (server-side proxy, URL unchanged)
+- `public/index.html` → static "we've moved" notice page served at `/` (Vercel serves files before rewrites), with a link and button to The Module Library (deep-link paths preserved)
 
 ## Add custom routes later
 
@@ -14,8 +14,8 @@ Add entries **before** the catch-all in `vercel.json`:
 ```json
 {
   "rewrites": [
-    { "source": "/docs", "destination": "https://8spine-moduels.pages.dev/docs" },
-    { "source": "/(.*)", "destination": "https://8spine-moduels.pages.dev/$1" }
+    { "source": "/docs", "destination": "https://8spine-modules.pages.dev/docs" },
+    { "source": "/(.*)", "destination": "https://8spine-modules.pages.dev/$1" }
   ]
 }
 ```

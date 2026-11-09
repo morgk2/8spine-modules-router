@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "https://8spine-moduels.pages.dev/$1"
+      "destination": "https://8spine-modules.pages.dev/$1"
     }
   ]
 }
